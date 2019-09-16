@@ -1,10 +1,10 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'gcr.io/$PROJECT_ID/github.com/forcicdpoc:$SHORT_SHA', '.']
+  args: ['build', '-t', 'gcr.io/$PROJECT_ID/repo:$SHORT_SHA', '.']
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'gcr.io/$PROJECT_ID/github.com/forcicdpoc:$SHORT_SHA']
+  args: ['push', 'gcr.io/$PROJECT_ID/repo:$SHORT_SHA']
 - name: 'gcr.io/cloud-builders/kubectl'
-  args: ['set', 'image', 'deployment/mywebserver3', 'forcicdpoc=gcr.io/$PROJECT_ID/github.com/forcicdpoc:$SHORT_SHA']
+  args: ['set', 'image', 'deployment/mynewwebserver', 'forcicdpoc=gcr.io/$PROJECT_ID/repo:$SHORT_SHA']
   env:
   - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
-  - 'CLOUDSDK_CONTAINER_CLUSTER=nginx-1-cluster'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=kubernatis-cluster-souvik'
