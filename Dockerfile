@@ -2,6 +2,6 @@ FROM nginx
 
 COPY wrapper.sh /
 
-COPY html /usr/share/nginx/html
+COPY Selecao /usr/share/nginx/html
 
 CMD ["./wrapper.sh"]
