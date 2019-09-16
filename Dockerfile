@@ -1,16 +1,7 @@
-FROM ubuntu:16.04
+FROM nginx
 
-MAINTAINER "Souvik Das"
+COPY wrapper.sh /
 
-RUN apt-get update \
-    && apt-get install -y nginx \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
-    && echo "daemon off;" >> /etc/nginx/nginx.conf
+COPY html /usr/share/nginx/html
 
-ADD default /etc/nginx/sites-available/default
-
-COPY Selecao /usr/share/nginx/html
-
-EXPOSE 80
-CMD ["nginx"]
+CMD ["./wrapper.sh"]
